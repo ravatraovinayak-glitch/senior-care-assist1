@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ElderCare — Your Health Companion</title>
+<link rel="stylesheet" href="css/style.css"/>
+<!-- Leaflet Map CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+
+<!-- ═══════ NAVBAR ═══════ -->
+<nav class="nb" id="nb">
+  <div class="nbrand" onclick="go('home')">🌿 ElderCare</div>
+  <button class="ham" id="ham">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nlinks" id="nav">
+    <li><a onclick="go('home')" class="on">🏠 Home</a></li>
+    <li><a onclick="go('medicine')">💊 Medicine</a></li>
+    <li><a onclick="go('nearby')">📍 Nearby</a></li>
+    <li><a onclick="go('emergency')">🚨 Emergency</a></li>
+    <li><a onclick="go('contacts')">📒 Contacts</a></li>
+    <li><a onclick="go('tips')">❤️ Health Tips</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════ TOAST CONTAINER ═══════ -->
+<div class="tbox" id="tbox"></div>
+
+<!-- ═══════════════════════════════════════
+     HOME SECTION
+═══════════════════════════════════════ -->
+<section class="sec act" id="sec-home">
+  <div class="hero">
+    <div class="pcont" id="pcont"></div>
+    <div class="hcont">
+      <div class="hbadge">✨ Your Health Companion</div>
+      <h1 class="htitle">Care &amp; Comfort<br/><span class="hl">For Every Age</span></h1>
+      <p class="hsub">A gentle, easy-to-use platform designed with love for our elders — reminders, emergency help, and daily wellness all in one place.</p>
+      <div class="hbtns">
+        <button class="btn btng" onclick="go('medicine')">🔔 Set Reminder</button>
+        <button class="btn btnr" onclick="go('emergency')">🚑 Emergency</button>
+      </div>
+    </div>
+    <div class="hvis">
+      <div class="avwrap">
+        <div class="ring"></div><div class="ring2"></div>
+        <span class="avem">👴</span>
+        <div class="avbadge">Stay Healthy! 💚</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fsec">
+    <div class="sh">
+      <h2>Everything You Need</h2>
+      <p>Six powerful features to keep you safe, healthy &amp; connected</p>
+    </div>
+    <div class="fgrid" id="fcards">
+      <div class="fc" style="--cc:#4CAF50" onclick="go('medicine')">
+        <div class="fico">💊</div>
+        <h3>Medicine Reminder</h3>
+        <p>Set alarms for your medicines — get sound alerts at the right time every day</p>
+        <div class="farr">→</div>
+      </div>
+      <div class="fc" style="--cc:#2196F3" onclick="go('nearby')">
+        <div class="fico">🏥</div>
+        <h3>Nearby Places</h3>
+        <p>Find hospitals and pharmacies near you with interactive map and directions</p>
+        <div class="farr">→</div>
+      </div>
+      <div class="fc" style="--cc:#f44336" onclick="go('emergency')">
+        <div class="fico">📞</div>
+        <h3>Emergency Numbers</h3>
+        <p>One-tap calling for ambulance, police, fire brigade and more</p>
+        <div class="farr">→</div>
+      </div>
+      <div class="fc" style="--cc:#FF9800" onclick="go('contacts')">
+        <div class="fico">📒</div>
+        <h3>Emergency Contacts</h3>
+        <p>Save family and doctor contacts for quick access anytime</p>
+        <div class="farr">→</div>
+      </div>
+      <div class="fc" style="--cc:#9C27B0" onclick="go('tips')">
+        <div class="fico">❤️</div>
+        <h3>Daily Health Tips</h3>
+        <p>Wellness advice and daily checklist curated for senior health</p>
+        <div class="farr">→</div>
+      </div>
+      <div class="fc" style="--cc:#009688;cursor:default">
+        <div class="fico">🔒</div>
+        <h3>Always Protected</h3>
+        <p>Your data stays on your device. Private, safe, works offline too</p>
+        <span class="badge bg">100% Private</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><span class="sn" data-to="24">0</span><span class="ss">hrs</span><p>Always Available</p></div>
+    <div class="stat"><span class="sn" data-to="10">0</span><span class="ss">+</span><p>Emergency Numbers</p></div>
+    <div class="stat"><span class="sn" data-to="28">0</span><span class="ss">+</span><p>Health Tips</p></div>
+    <div class="stat"><span class="sn" data-to="100">0</span><span class="ss">%</span><p>Free to Use</p></div>
+  </div>
+
+  <footer class="foot">
+    <div class="fbrand">🌿 ElderCare</div>
+    <p style="opacity:.72;font-size:.88rem">Designed with love for our elders</p>
+    <div class="flinks">
+      <a onclick="go('medicine')">Medicine</a>
+      <a onclick="go('nearby')">Nearby</a>
+      <a onclick="go('emergency')">Emergency</a>
+      <a onclick="go('contacts')">Contacts</a>
+      <a onclick="go('tips')">Health Tips</a>
+    </div>
+    <small>© 2025 ElderCare — Made with ❤️ for seniors</small>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════
+     MEDICINE REMINDER SECTION
+═══════════════════════════════════════ -->
+<section class="sec" id="sec-medicine">
+  <div class="phero">
+    <div class="pig">💊</div>
+    <h1>Medicine Reminder</h1>
+    <p>Never miss your medicine — get sound alerts at the right time</p>
+  </div>
+  <div class="pcontent">
+    <div class="clock">
+      <div>
+        <div class="clkt" id="clk">--:--:--</div>
+        <div class="clkl">Keep this page open — reminders ring automatically</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ctitle"><span class="ico">➕</span> Add New Medicine</div>
+      <div class="fg">
+        <div class="fgrp"><label>Medicine Name *</label>
+          <input type="text" id="mn" class="inp" placeholder="e.g. Metformin"/></div>
+        <div class="fgrp"><label>Dosage</label>
+          <input type="text" id="md" class="inp" placeholder="e.g. 500mg / 1 tablet"/></div>
+        <div class="fgrp"><label>Reminder Time *</label>
+          <input type="time" id="mt" class="inp"/></div>
+        <div class="fgrp"><label>Frequency</label>
+          <select id="mf" class="inp">
+            <option>Daily</option><option>Twice a Day</option>
+            <option>Three Times a Day</option><option>Weekly</option>
+          </select></div>
+        <div class="fgrp"><label>Notes</label>
+          <input type="text" id="mno" class="inp" placeholder="e.g. After meals"/></div>
+      </div>
+      <button class="btn btng" onclick="addMed()">🔔 Add Reminder</button>
+    </div>
+    <div class="card">
+      <div class="ctitle"><span class="ico">📋</span> Your Medicines
+        <span id="mcnt" style="margin-left:auto;font-size:.82rem;color:var(--mu);font-weight:400"></span>
+      </div>
+      <div id="mlist"></div>
+    </div>
+    <div class="card" style="background:linear-gradient(135deg,#e8f5e9,#f4faf4)">
+      <div class="ctitle"><span class="ico">ℹ️</span> How It Works</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.9rem;margin-top:.2rem">
+        <div style="text-align:center;padding:.7rem"><div style="font-size:2rem;margin-bottom:.35rem">➕</div><strong>Add</strong><p style="color:var(--mu);font-size:.85rem;margin-top:.2rem">Name, dose &amp; time</p></div>
+        <div style="text-align:center;padding:.7rem"><div style="font-size:2rem;margin-bottom:.35rem">⏰</div><strong>Wait</strong><p style="color:var(--mu);font-size:.85rem;margin-top:.2rem">Keep page open</p></div>
+        <div style="text-align:center;padding:.7rem"><div style="font-size:2rem;margin-bottom:.35rem">🔔</div><strong>Ring!</strong><p style="color:var(--mu);font-size:.85rem;margin-top:.2rem">Sound + popup alert</p></div>
+        <div style="text-align:center;padding:.7rem"><div style="font-size:2rem;margin-bottom:.35rem">✅</div><strong>Confirm</strong><p style="color:var(--mu);font-size:.85rem;margin-top:.2rem">Mark as taken</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     NEARBY SECTION
+═══════════════════════════════════════ -->
+<section class="sec" id="sec-nearby">
+  <div class="phero blue">
+    <div class="pig">🏥</div>
+    <h1>Nearby Hospitals &amp; Pharmacies</h1>
+    <p>Find medical help near your location with map and directions</p>
+  </div>
+  <div class="pcontent">
+    <div class="locbar ok" id="locbar">📍 Detecting your location…</div>
+    <div class="tabs">
+      <button class="tab on" onclick="ftab(this,'all')">🗺️ All</button>
+      <button class="tab" onclick="ftab(this,'hospital')">🏥 Hospitals</button>
+      <button class="tab" onclick="ftab(this,'pharmacy')">💊 Pharmacies</button>
+    </div>
+    <div class="card" style="padding:1rem;margin-bottom:1.3rem">
+      <div id="map"></div>
+      <p style="text-align:center;color:var(--mu);font-size:.8rem;margin-top:.65rem">
+        📌 Click markers for details · "Directions" opens Google Maps
+      </p>
+    </div>
+    <div class="card">
+      <div class="ctitle"><span class="ico">📍</span> Nearby Places</div>
+      <div id="plist"><div class="spin"></div></div>
+    </div>
+    <div class="card" style="background:linear-gradient(135deg,#e3f2fd,#f4faf4)">
+      <div class="ctitle" style="color:#1565c0"><span class="ico">💡</span> Tip</div>
+      <p style="color:#1565c0;font-size:.93rem">Bookmark this page for quick access. The map uses your GPS. Tap "Directions" to navigate via Google Maps.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     EMERGENCY SECTION
+═══════════════════════════════════════ -->
+<section class="sec" id="sec-emergency">
+  <div class="phero red">
+    <div class="pig">🚨</div>
+    <h1>Emergency Numbers</h1>
+    <p>One-tap calling for all emergency services — available 24/7</p>
+  </div>
+  <div class="pcontent">
+    <div class="card" style="background:linear-gradient(135deg,#ffebee,#fff9f9)">
+      <a href="tel:112" class="sos">🆘 &nbsp; CALL SOS — 112 &nbsp; (National Emergency)</a>
+      <p style="text-align:center;color:var(--mu);margin-top:.75rem;font-size:.92rem">
+        <strong>112</strong> connects to police, ambulance, or fire — works even without SIM!
+      </p>
+    </div>
+    <div class="card">
+      <div class="stitle">🏥 Medical Emergency</div>
+      <div class="egrid">
+        <a href="tel:108" class="emg red"><span class="ei">🚑</span><span>Ambulance</span><span class="en">108</span></a>
+        <a href="tel:102" class="emg red"><span class="ei">👶</span><span>Maternity</span><span class="en">102</span></a>
+        <a href="tel:1098" class="emg pur"><span class="ei">🧒</span><span>Child Helpline</span><span class="en">1098</span></a>
+        <a href="tel:14567" class="emg tel"><span class="ei">👴</span><span>Senior Citizen</span><span class="en">14567</span></a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="stitle">👮 Police &amp; Security</div>
+      <div class="egrid">
+        <a href="tel:100" class="emg blue"><span class="ei">🛡️</span><span>Police</span><span class="en">100</span></a>
+        <a href="tel:181" class="emg pur"><span class="ei">👩</span><span>Women Helpline</span><span class="en">181</span></a>
+        <a href="tel:1091" class="emg pur"><span class="ei">🤝</span><span>Women Distress</span><span class="en">1091</span></a>
+        <a href="tel:1930" class="emg blue"><span class="ei">💻</span><span>Cyber Crime</span><span class="en">1930</span></a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="stitle">🔥 Fire &amp; Disaster</div>
+      <div class="egrid">
+        <a href="tel:101" class="emg ora"><span class="ei">🔥</span><span>Fire Brigade</span><span class="en">101</span></a>
+        <a href="tel:1070" class="emg ora"><span class="ei">🌊</span><span>Disaster Mgmt</span><span class="en">1070</span></a>
+        <a href="tel:108" class="emg grn"><span class="ei">🛣️</span><span>Road Accident</span><span class="en">108</span></a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="stitle">📞 Important Helplines</div>
+      <div class="egrid">
+        <a href="tel:9152987821" class="emg tel"><span class="ei">🧠</span><span>Mental Health</span><span class="en">9152987821</span></a>
+        <a href="tel:104" class="emg grn"><span class="ei">💗</span><span>Health Helpline</span><span class="en">104</span></a>
+        <a href="tel:18001114000" class="emg blue"><span class="ei">⚖️</span><span>Legal Aid</span><span class="en">1800-11-4000</span></a>
+        <a href="tel:155300" class="emg ora"><span class="ei">🪪</span><span>Senior Pension</span><span class="en">155300</span></a>
+      </div>
+    </div>
+    <div class="card" style="background:linear-gradient(135deg,#fff8e1,#fffde7)">
+      <div class="ctitle" style="color:#e65100"><span class="ico">⚠️</span> Important Reminder</div>
+      <p style="color:#bf360c;font-size:.93rem">Keep your phone charged. Save this page offline. Share emergency numbers with family members. In case of any emergency, <strong>call 112 first</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CONTACTS SECTION
+═══════════════════════════════════════ -->
+<section class="sec" id="sec-contacts">
+  <div class="phero">
+    <div class="pig">📒</div>
+    <h1>Emergency Contacts</h1>
+    <p>Save and quickly call your family &amp; doctors</p>
+  </div>
+  <div class="pcontent">
+    <div class="card">
+      <div class="ctitle"><span class="ico">➕</span> Add Contact</div>
+      <div class="fg">
+        <div class="fgrp"><label>Name *</label>
+          <input type="text" id="cn" class="inp" placeholder="e.g. Rahul (Son)"/></div>
+        <div class="fgrp"><label>Phone *</label>
+          <input type="tel" id="cp" class="inp" placeholder="e.g. 9876543210"/></div>
+        <div class="fgrp"><label>Relation</label>
+          <select id="cr" class="inp">
+            <option>Son</option><option>Daughter</option><option>Spouse</option>
+            <option>Doctor</option><option>Neighbour</option><option>Friend</option><option>Other</option>
+          </select></div>
+        <div class="fgrp"><label>Priority</label>
+          <select id="cpr" class="inp">
+            <option value="high">⭐ High</option>
+            <option value="normal" selected>Normal</option>
+          </select></div>
+      </div>
+      <button class="btn btng" onclick="addContact()">💾 Save Contact</button>
+    </div>
+    <div class="card">
+      <div class="ctitle"><span class="ico">📒</span> Saved Contacts
+        <span id="ccnt" style="margin-left:auto;font-size:.82rem;color:var(--mu);font-weight:400"></span>
+        <button class="btn btno btnsm" onclick="toggleCSort()" style="margin-left:.5rem">⭐ Sort by Priority</button>
+      </div>
+      <div class="srchw">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="srch" id="csrch" placeholder="Search contacts…" oninput="renderContacts(this.value.toLowerCase())"/>
+      </div>
+      <div id="clist"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     HEALTH TIPS SECTION
+═══════════════════════════════════════ -->
+<section class="sec" id="sec-tips">
+  <div class="phero">
+    <div class="pig"><span class="hb">❤️</span></div>
+    <h1>Daily Health Tips</h1>
+    <p>Expert wellness advice curated for seniors — live healthier every day</p>
+  </div>
+  <div class="pcontent">
+    <div class="tod">
+      <div class="todlbl">🌟 Today's Tip</div>
+      <span class="todem" id="todem"></span>
+      <h2 id="todtitle"></h2>
+      <p id="todtext"></p>
+    </div>
+    <div class="cats">
+      <button class="cat on" onclick="fcat(this,'all')">🌿 All</button>
+      <button class="cat" onclick="fcat(this,'nutrition')">🥗 Nutrition</button>
+      <button class="cat" onclick="fcat(this,'exercise')">🏃 Exercise</button>
+      <button class="cat" onclick="fcat(this,'mental')">🧠 Mental</button>
+      <button class="cat" onclick="fcat(this,'sleep')">😴 Sleep</button>
+      <button class="cat" onclick="fcat(this,'hydration')">💧 Hydration</button>
+      <button class="cat" onclick="fcat(this,'safety')">🦺 Safety</button>
+    </div>
+    <div class="tgrid" id="tgrid"></div>
+    <div class="card">
+      <div class="ctitle"><span class="ico">✅</span> Today's Wellness Checklist</div>
+      <div id="wlist"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ MODAL ═══════ -->
+<div class="mov" id="modal" style="display:none">
+  <div class="mdl">
+    <div class="mico" id="mico">🔔</div>
+    <h3 id="mtitle"></h3>
+    <p id="mmsg"></p>
+    <div style="display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap">
+      <button class="btn btng" id="mbtn1" onclick="markTaken()">✅ Mark as Taken</button>
+      <button class="btn btno" onclick="closeModal()">Snooze 5 min</button>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/db.js"></script>
+<script src="js/medicine.js"></script>
+<script src="js/nearby.js"></script>
+<script src="js/contacts.js"></script>
+<script src="js/tips.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
